@@ -13,18 +13,26 @@ const Square = (props) => (
     constructor(props) {
       super(props);
       this.state = {
-        squares: Array(9).fill(null),
+        squares: props.squares ? props.squares :  Array(9).fill(null),
         xIsNext: true,
+        readOnly: !!props.readOnly,
       }
     }
 
+    componentDidUpdate(props) {
+      console.log(props);
+    }
+
     handleClick(position) {
+      if(this.state.readOnly) {
+        return;
+      }
       const currentGame = this.state.squares.slice();
       if (calculateWinner(currentGame) || currentGame[position]) {
         return;
       }
       currentGame[position] = this.state.xIsNext ? 'X' : 'O';
-      console.log(this.state.squares, currentGame);
+      this.props.onTurn(currentGame);
       this.setState({squares: currentGame, xIsNext: !this.state.xIsNext})
     }
 
@@ -34,15 +42,18 @@ const Square = (props) => (
   
     render() {
       const winner = calculateWinner(this.state.squares);
-      let status;
-      if (winner) {
-        status = 'Winner: ' + winner;
-      } else {
-        status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+      let status = '';
+
+      if(!this.state.readOnly) {
+        if (winner) {
+          status = 'Winner: ' + winner;
+        } else {
+          status = 'Next player: ' + (this.props.xIsNext ? 'X' : 'O');
+        }
       }
   
       return (
-        <div>
+        <div className="board">
           <div className="status">{status}</div>
           <div className="board-row">
             {this.renderSquare(0)}
@@ -65,13 +76,57 @@ const Square = (props) => (
   }
   
   class Game extends React.Component {
+    constructor(props) {
+      super(props);
+      this.state = {
+        history: [{
+          squares: Array(9).fill(null)
+        }],
+        xIsNext: true,
+        rootSquareSchema: null,
+      }
+      this.onTurn.bind(this);
+    }
+
+    onTurn(params) {
+      const history = this.state.history.slice();
+      history.push(params);
+      this.setState({
+        history: history
+      })
+    }
+
+    setNewSquareSchema(square) {
+      this.setState({rootSquareSchema: square})
+    }
+
     render() {
       return (
         <div className="game">
           <div className="game-board">
-            <Board />
+            <Board 
+              xIsNext={this.state.xIsNext}
+              squares={this.state.rootSquareSchema} 
+              onTurn={(params) => this.onTurn(params)}
+            />
           </div>
           <div className="game-info">
+            {
+              this.state.history.map(
+                (square) => {
+                  return (
+                    <div onClick={() => this.setNewSquareSchema(square)}>
+                      <Board 
+                        squares={square} 
+                        key={square} 
+                        readOnly={true} 
+                      />
+                    </div>
+                  )
+                    
+                }
+              )
+            }
             <div>{/* status */}</div>
             <ol>{/* TODO */}</ol>
           </div>

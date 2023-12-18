@@ -14,6 +14,11 @@ ul {
     display: table;
 }
 
+.board {
+    display: block;
+    min-width: 45px;
+}
+
 .status {
     margin-bottom: 10px;
 }
@@ -43,9 +48,25 @@ ul {
 
 .game {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
 }
 
 .game-info {
-    margin-left: 20px;
+    max-width: 100px;
+    display: flex;
+}
+
+.game-info .square {
+    background: #fff;
+    border: 1px solid #999;
+    float: left;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 13px;
+    height: 13px;
+    margin-right: -1px;
+    margin-top: -1px;
+    padding: 0;
+    text-align: center;
+    width: 13px;
 }
