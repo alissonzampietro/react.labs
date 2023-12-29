@@ -48,12 +48,14 @@ ul {
 
 .game {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
 }
 
 .game-info {
     max-width: 100px;
     display: flex;
+    margin-left: 60px;
+    flex-direction: column;
 }
 
 .game-info .square {
