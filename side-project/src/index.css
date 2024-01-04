@@ -1,0 +1,17 @@
+body {
+    background: #fff;
+}
+
+.passed {
+    color: rgb(3, 85, 3);
+}
+
+.disapproved {
+    color: rgb(216, 0, 0);
+}
+
+main {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+
+}
