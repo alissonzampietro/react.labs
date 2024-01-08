@@ -1,5 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&family=Roboto:ital,wght@0,300;1,400&display=swap');
+
 body {
     background: #fff;
+    font-family: 'Poppins', sans-serif;
 }
 
 .passed {
@@ -12,6 +15,5 @@ body {
 
 main {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-
+    grid-template-columns: 1fr 1fr 1fr;
 }
