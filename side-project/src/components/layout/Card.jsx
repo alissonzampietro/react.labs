@@ -1,11 +1,16 @@
-import React from "react";
+/* eslint-disable import/no-anonymous-default-export */
+import React, { useContext } from "react";
 import "./Card.css";
+import { Theme } from "../../context/theme";
 
 export default ({title, children}) => {
-    return <div className="card">
-        <h1>
+
+    const color = useContext(Theme);
+
+    return <div className="card" style={{backgroundColor: color}}>
+        <h3 className="title">
             {title}
-        </h1>
+        </h3>
         <div className="content">
             {children}
         </div>
