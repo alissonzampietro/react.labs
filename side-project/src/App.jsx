@@ -33,7 +33,7 @@ export default function App(props) {
 
     const [color, setColor] = useState('#000')
 
-    function generateRandomColor() {
+    function generateRandomHexColor() {
         const colorList = ['A','B','C','D','E','F','0','1','2','3','4','5','6','7','8','9'];
         let finalColor = '#';
         for(let i = 0; i<6;i++) {
@@ -58,7 +58,7 @@ export default function App(props) {
                 <Juke />
             </Card>
             <hr />
-            <button onClick={() => generateRandomColor()}>
+            <button onClick={() => generateRandomHexColor()}>
                 Change Color
             </button>
         </Theme.Provider>
