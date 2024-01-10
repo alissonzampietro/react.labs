@@ -13,7 +13,7 @@ body {
     color: rgb(216, 0, 0);
 }
 
-main {
+main .tutorialContent {
     display: flex;
     flex-wrap: wrap;
 }

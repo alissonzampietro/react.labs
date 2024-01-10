@@ -1,12 +1,14 @@
 import { createRoot } from 'react-dom/client';
 import './index.css';
 import StudentStatus from './components/base/StudentStatus';
+import productList from './data/product-list';
 import Fragment from './components/base/Fragment';
 import Juke from './components/base/ComponentArrowFunction';
 import Random from './components/base/Random';
 import Card from './components/layout/Card';
 import { Theme } from './context/theme';
 import { useState } from 'react';
+import ProductList from './components/loop/ProductList';
 
 
 const studentList = [
@@ -44,20 +46,25 @@ export default function App(props) {
 
     return  <main>
         <Theme.Provider value={color}>
-            <Card title="Random Challenge">
-                <Random max="10" min="7"/>
-                <Random max="10" min="1"/>
-            </Card>
-            <Card title="Students Status">
-                {studentList.map(student => <StudentStatus name={student.name} grade={student.grade}/>)}
-            </Card>
-            <Card title="Fragments">
-                <Fragment />
-            </Card>
-            <Card title="Component Arrow Function">
-                <Juke />
-            </Card>
-            <hr />
+            <section class="tutorialContent">
+                <Card title="Random Challenge">
+                    <Random max="10" min="7"/>
+                    <Random max="10" min="1"/>
+                </Card>
+                <Card title="Students Status">
+                    {studentList.map(student => <StudentStatus name={student.name} grade={student.grade}/>)}
+                </Card>
+                <Card title="Fragments">
+                    <Fragment />
+                </Card>
+                <Card title="Component Arrow Function">
+                    <Juke />
+                </Card>
+                <Card title="Product List Component">
+                    <ProductList list={productList}/>
+                </Card>
+            </section>
+                <hr />
             <button onClick={() => generateRandomHexColor()}>
                 Change Color
             </button>
