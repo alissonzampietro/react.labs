@@ -1,25 +1,25 @@
 
 import React, { useEffect, useState } from 'react';
-import { saveTask, loadAllTasks, removeTask } from './services/localstorage.service';
+import { saveTask, loadAllTasks, removeTask, completeTask as serviceCompleteTask } from './services/localstorage.service';
+import AddTask from './components/AddTask';
+import ListTasks from './components/ListTasks';
 
 function TodoApp() {
   const [tasks, setTasks] = useState([]);
-  const [inputValue, setInputValue] = useState('');
 
   useEffect(() => {
     setTasks(loadAllTasks());
   }, [])
 
-  const handleInputChange = (event) => {
-    setInputValue(event.target.value);
-  };
+  const completeTask = (taskId) => {
+    setTasks(serviceCompleteTask(taskId));
+  }
 
-  const handleAddTask = () => {
-    if (inputValue.trim() !== '') {
+  const handleAddTask = (value) => {
+    if (value.trim() !== '') {
       const id = Date.now();
-      saveTask({ id: id, text: inputValue, completed: false });
-      setTasks([...tasks, { id: id, text: inputValue, completed: false }]);
-      setInputValue('');
+      saveTask({ id: id, text: value, completed: false });
+      setTasks([...tasks, { id: id, text: value, completed: false }]);
     }
   };
 
@@ -28,35 +28,10 @@ function TodoApp() {
     setTasks(tasks.filter(task => task.id !== taskId));
   };
 
-  const handleToggleTask = (taskId) => {
-    setTasks(tasks.map(task =>
-      task.id === taskId ? { ...task, completed: !task.completed } : task
-    ));
-  };
-
   return (
     <div>
-      <h1>To-Do List</h1>
-      <input
-        type="text"
-        value={inputValue}
-        onChange={handleInputChange}
-        placeholder="Enter task..."
-      />
-      <button onClick={handleAddTask}>Add Task</button>
-      <ul>
-        {tasks.map(task => (
-          <li key={task.id} style={{ textDecoration: task.completed ? 'line-through' : 'none' }}>
-            <input
-              type="checkbox"
-              checked={task.completed}
-              onChange={() => handleToggleTask(task.id)}
-            />
-            <span>{task.text}</span>
-            <button onClick={() => handleDeleteTask(task.id)}>Delete</button>
-          </li>
-        ))}
-      </ul>
+      <AddTask onAddTask={handleAddTask}/>
+      <ListTasks tasks={tasks} onCompleteTask={completeTask} onRemoveTask={handleDeleteTask}/>
     </div>
   );
 }

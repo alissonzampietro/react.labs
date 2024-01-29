@@ -12,6 +12,13 @@ export const getTask = (item) => {
 
 const resetTaskList = (newList) => {
     localStorage.setItem(SCHEMA, JSON.stringify(newList));
+    return loadAllTasks();  
+}
+
+export const completeTask = (taskId) => {
+    return resetTaskList(loadAllTasks().map(task =>
+        task.id === taskId ? { ...task, completed: !task.completed } : task
+    ));
 }
 
 
