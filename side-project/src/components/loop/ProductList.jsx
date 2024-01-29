@@ -1,9 +1,10 @@
+import './ProductList.css';
 import { capitalize } from "../../utils/string.utils";
 
 export default function ProductList({list}) {
     const headers = Object.keys(list.at(0));
     return <table>
-        <tr>
+        <tr className="headers">
             {headers.map(item => <th>{capitalize(item)}</th>)}
         </tr>
             {list.map(item => {
