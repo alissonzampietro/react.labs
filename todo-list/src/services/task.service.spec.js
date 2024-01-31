@@ -1,4 +1,3 @@
-import * as localStorageService from "./localstorage.service";
 import * as taskService from "./task.service";
 
 const tasks = [
@@ -28,18 +27,15 @@ const tasks = [
         { id: 8, title: 'Subtask 3.3', completed: false },
       ],
     },
-  ];
-  
-  console.log(tasks);
-
+  ];  
 
   describe('Task service test', () => {
-    const spy = jest.spyOn(localStorageService, 'loadAllData');
-    spy.mockReturnValue(tasks);
-
-    expect(taskService.completeSubtask(1,1)).toEqual(tasks);
+    
     test('Complete Subtask method should remove the subtask id 2 from the task id 1', () => {
-
+      const spy = jest.spyOn(taskService, 'loadAllTasks');
+      spy.mockReturnValue(tasks);
+      expect(taskService.completeSubtask(1,1)).toEqual(tasks);
+      spy.mockRestore();
     })
   })
   

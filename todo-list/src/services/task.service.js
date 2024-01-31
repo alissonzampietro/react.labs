@@ -23,7 +23,7 @@ export const completeTask = (taskId) => {
 }
 // TODO
 export const completeSubtask = (taskId, subtaskId) => {
-    const allTasks = loadAllData(SCHEMA);
+    const allTasks = loadAllTasks();
 
     return allTasks;
     
