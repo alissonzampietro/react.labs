@@ -1,9 +1,9 @@
 import './App.css';
-import TodoApp from './Todo';
+import TodoApp from './pages/Todo';
 
 function App() {
   return (
-    <div className="App">
+    <div className="flex items-center justify-center">
       <TodoApp ></TodoApp>
     </div>
   );  
