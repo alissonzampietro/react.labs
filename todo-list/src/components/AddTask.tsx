@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
+import { AddTaskProps } from "../interfaces/task.interface";
 
-const AddTask = ({onAddTask, label = 'Add Task'}) => {
+const AddTask = ({onAddTask, label = 'Add Task'}: AddTaskProps) => {
 
     const [inputValue, setInputValue] = useState('');
 
-    const handleInputChange = (event) => {
+    const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
         setInputValue(event.target.value);
     };
 

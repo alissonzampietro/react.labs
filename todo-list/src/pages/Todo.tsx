@@ -3,11 +3,12 @@ import React, { useEffect, useState } from 'react';
 import { saveTask, loadAllTasks, removeTask, completeTask as serviceCompleteTask, addSubtask } from '../services/task.service';
 import AddTask from '../components/AddTask';
 import ListTasks from '../components/ListTasks';
+import { Task } from '../interfaces/task.interface';
 
 function TodoApp() {
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState<Task[]>([]);
 
-  const buildTaskBody = (value) => {
+  const buildTaskBody = (value: string): Task => {
     const id = Date.now();
     return { id: id, text: value, completed: false, subtasks: [] }
   }
@@ -16,11 +17,11 @@ function TodoApp() {
     setTasks(loadAllTasks());
   }, [])
 
-  const completeTask = (taskId) => {
+  const completeTask = (taskId: number): void => {
     setTasks(serviceCompleteTask(taskId));
   }
 
-  const handleAddTask = (value) => {
+  const handleAddTask = (value: string): void => {
     if (value.trim() !== '') {
       const taskBody = buildTaskBody(value);
       saveTask(taskBody);
@@ -28,11 +29,11 @@ function TodoApp() {
     }
   };
 
-  const addSubtasks = (taskId, value) => {
+  const addSubtasks = (taskId: number, value: string): void => {
     addSubtask(taskId, buildTaskBody(value))
   }
 
-  const handleDeleteTask = (taskId) => {
+  const handleDeleteTask = (taskId: number): void => {
     removeTask(taskId);
     setTasks(tasks.filter(task => task.id !== taskId));
   };
