@@ -1,6 +1,6 @@
 # TODO List App
 
-It's TODO List Application, allowing to create a list and sublist of tasks that you want to do. Everything is saved in local storage.
+It's a TODO List Application, allowing to create a list and sublist of tasks that you want to do. Everything is saved in local storage.
 
 ## Available Scripts
 
