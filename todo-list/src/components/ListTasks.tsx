@@ -1,13 +1,12 @@
 import { useState } from "react";
 import AddTask from "./AddTask";
 import Subtasks from "./Subtasks";
+import { ListTasksProps } from "../interfaces/task.interface";
 
-
-
-const ListTasks = ({task, onRemoveTask, onCompleteTask, onAddSubtasks}) => {
+const ListTasks = ({task, onRemoveTask, onCompleteTask, onAddSubtasks}: ListTasksProps) => {
     const [showAddTask, setShowAddTask] = useState(false);
 
-    const handleAddTaskAction = (id, value) => {
+    const handleAddTaskAction = (id: number, value: string): void => {
       setShowAddTask(curr => !curr);
       onAddSubtasks(id, value);
     }
@@ -26,7 +25,7 @@ const ListTasks = ({task, onRemoveTask, onCompleteTask, onAddSubtasks}) => {
           <ul>
           {task.subtasks && (task.subtasks.map(sub => <Subtasks subtask={sub} taskId={task.id}/>))}
           </ul>
-          {showAddTask && <AddTask label="Add Subtask" onAddTask={(value) => handleAddTaskAction(task.id, value)}/>}
+          {showAddTask && <AddTask label="Add Subtask" onAddTask={(value: string) => handleAddTaskAction(task.id, value)}/>}
         </div>
       </li>
 }

@@ -1,6 +1,7 @@
+import { SubtaskProps } from "../interfaces/subtask.interface";
 import { completeSubtask, removeSubtask } from "../services/task.service";
 
-const Subtasks = ({taskId, subtask}) => {
+const Subtasks = ({taskId, subtask}: SubtaskProps) => {
 
     return <li key={subtask.id} style={{ textDecoration: subtask.completed ? 'line-through' : 'none' }}>
         <input
