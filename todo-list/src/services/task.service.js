@@ -16,10 +16,23 @@ export const loadAllTasks = () => {
     return loadAllData(SCHEMA);
 }
 
+const toogleAllSubtasks = (subtasks) => {
+    return (subtasks && subtasks.length > 0) ? subtasks.map(sub => ({...sub, completed: !sub.completed})) : [];
+}
+
 export const completeTask = (taskId) => {
-    return commitChanges(SCHEMA, loadAllData(SCHEMA).map(task =>
-        task.id === taskId ? { ...task, completed: !task.completed } : task
-    ));
+    const completedTask = loadAllData(SCHEMA).map(task => {
+        if(task.id === taskId) {
+            return { 
+                ...task, 
+                completed: !task.completed, 
+                subtasks: toogleAllSubtasks(task.subtasks) 
+            }
+
+        }
+        return task;
+    });
+    return commitChanges(SCHEMA, completedTask);
 }
 // TODO
 export const completeSubtask = (taskId, subtaskId) => {

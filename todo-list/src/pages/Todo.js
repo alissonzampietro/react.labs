@@ -9,7 +9,7 @@ function TodoApp() {
 
   const buildTaskBody = (value) => {
     const id = Date.now();
-    return { id: id, text: value, completed: false }
+    return { id: id, text: value, completed: false, subtasks: [] }
   }
 
   useEffect(() => {
@@ -27,11 +27,6 @@ function TodoApp() {
       setTasks([...tasks, taskBody]);
     }
   };
-
-  const listSubtasks = (taskId) => {
-    listSubtasks(taskId)
-    addSubtask(taskId)
-  }
 
   const addSubtasks = (taskId, value) => {
     addSubtask(taskId, buildTaskBody(value))
@@ -52,7 +47,6 @@ function TodoApp() {
           task={task} 
           onCompleteTask={completeTask} 
           onRemoveTask={handleDeleteTask}
-          onListSubtasks={listSubtasks}
           onAddSubtasks={addSubtasks}
         />)}
       </ul>

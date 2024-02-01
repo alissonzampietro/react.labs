@@ -1,9 +1,10 @@
 import { useState } from "react";
 import AddTask from "./AddTask";
+import Subtasks from "./Subtasks";
 
 
 
-const ListTasks = ({task, onRemoveTask, onCompleteTask, onListSubtasks, onAddSubtasks}) => {
+const ListTasks = ({task, onRemoveTask, onCompleteTask, onAddSubtasks}) => {
     const [showAddTask, setShowAddTask] = useState(false);
 
     const handleAddTaskAction = (id, value) => {
@@ -22,7 +23,9 @@ const ListTasks = ({task, onRemoveTask, onCompleteTask, onListSubtasks, onAddSub
         <button className="px-2 bg-red-500 ml-1 hover:bg-red-400 text-white px-1 rounded" onClick={() => onRemoveTask(task.id)}>Delete</button>
         <br />
         <div className="ml-10">
-          {task.subtasks && (task.subtasks.map(sub => <ListTasks task={sub} onRemoveTask={onRemoveTask} onCompleteTask={onCompleteTask} subtasks={false}/>))}
+          <ul>
+          {task.subtasks && (task.subtasks.map(sub => <Subtasks subtask={sub} taskId={task.id}/>))}
+          </ul>
           {showAddTask && <AddTask label="Add Subtask" onAddTask={(value) => handleAddTaskAction(task.id, value)}/>}
         </div>
       </li>
