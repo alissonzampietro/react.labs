@@ -25,15 +25,13 @@ export const completeTask = (taskId) => {
 export const completeSubtask = (taskId, subtaskId) => {
     const allTasks = loadAllTasks();
 
-    return allTasks;
-    
-    const subtaskIndex = allTasks.findIndex(task =>
+    const taskIndex = allTasks.findIndex(task =>
         task.id === taskId
     );
 
-    allTasks[subtaskIndex]['subtasks'].map()
+    allTasks[taskIndex]['subtasks'] = allTasks[taskIndex]['subtasks'].map(sub => sub.id === subtaskId ? {...sub, completed: true} : sub);
 
-    return commitChanges(SCHEMA);
+    return commitChanges(SCHEMA, allTasks);
 }
 
 export const addSubtask = (taskId, subtask) => {
@@ -55,7 +53,7 @@ export const removeSubtask = (taskId, subtaskId) => {
 
     if(allData[indexTask] && allData[indexTask]['subtasks']) {
         const indexSubTask = allData[indexTask]['subtasks'].findIndex(sub => sub.id === subtaskId);
-        if(indexSubTask) {
+        if(indexSubTask !== -1) {
             allData[indexTask]['subtasks'].splice(indexSubTask, 1);
         }
     }
