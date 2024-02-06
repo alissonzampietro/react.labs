@@ -1,3 +1,4 @@
+import { TodoActions } from "../enums/todo.enum";
 import { Subtask } from "./subtask.interface";
 
 export interface Task {
@@ -17,4 +18,9 @@ export interface ListTasksProps {
 export interface AddTaskProps {
     onAddTask: (value: string) => void;
     label?: string;
+}
+
+export interface TodoReduxStructure {
+    type: TodoActions,
+    payload: Task,
 }
