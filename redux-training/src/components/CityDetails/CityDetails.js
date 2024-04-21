@@ -1,9 +1,13 @@
+import { useSelector } from "react-redux";
+
 export default function CityDetails({region}) {
     let url = '/assets/images/brasil.png';
     if(typeof region.nome === 'string') {
         let one = region.nome.split(' ');
         url = `/assets/images/${one.at().toLowerCase().trim().normalize('NFD').replace(/[\u0300-\u036f]/g, "")}.png`;
     }
+
+    const r = useSelector(state => state.region.value);
 
     
     return <>
@@ -12,7 +16,7 @@ export default function CityDetails({region}) {
             <ul className="px-10">
                 <li className="flex items-center justify-center space-between"> 
                     <img src={url} alt="" width="50" /> 
-                    <p className="text-lg text-white font-bold px-3">{region?.nome}</p>
+                    <p className="text-lg text-white font-bold px-3">{region?.nome} {r.sigla}</p>
                 </li>
                 <li>
                     <p className="text-lg text-white font-bold">Acronym: {region?.sigla}</p></li>
