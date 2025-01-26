@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="560" height="100" viewBox="0 0 500 100">
+  <!-- Background squares -->
+  <rect x="0" y="0" width="80" height="80" fill="#f1c40f" rx="10" />
+  <rect x="90" y="0" width="80" height="80" fill="#2ecc71" rx="10" />
+  <rect x="180" y="0" width="80" height="80" fill="#3498db" rx="10" />
+  <rect x="270" y="0" width="80" height="80" fill="#e74c3c" rx="10" />
+  <rect x="360" y="0" width="80" height="80" fill="#9b59b6" rx="10" />
+  <rect x="450" y="0" width="80" height="80" fill="#e76d6e" rx="10" />
+  
+  <!-- Letters -->
+  <text x="40" y="55" font-size="40" font-family="Arial, sans-serif" fill="#ffffff" text-anchor="middle" dominant-baseline="middle">W</text>
+  <text x="130" y="55" font-size="40" font-family="Arial, sans-serif" fill="#ffffff" text-anchor="middle" dominant-baseline="middle">O</text>
+  <text x="220" y="55" font-size="40" font-family="Arial, sans-serif" fill="#ffffff" text-anchor="middle" dominant-baseline="middle">R</text>
+  <text x="310" y="55" font-size="40" font-family="Arial, sans-serif" fill="#ffffff" text-anchor="middle" dominant-baseline="middle">D</text>
+  <text x="400" y="55" font-size="40" font-family="Arial, sans-serif" fill="#ffffff" text-anchor="middle" dominant-baseline="middle">L</text>
+  <text x="490" y="55" font-size="40" font-family="Arial, sans-serif" fill="#ffffff" text-anchor="middle" dominant-baseline="middle">E</text>
+</svg>

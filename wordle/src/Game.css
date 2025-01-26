@@ -1,0 +1,22 @@
+.Game {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #e6b96b;
+  min-height: 100vh;
+  padding-top: 30px;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.Game-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.word-list {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+}

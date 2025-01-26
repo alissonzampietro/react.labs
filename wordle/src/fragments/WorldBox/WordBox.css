@@ -1,0 +1,13 @@
+.word {
+    padding: 5px 15px;
+    color: #1b1b1b;
+    font-weight: 500;
+    width: 20px;
+    background-color: #ffffff;
+    border: 1px solid #a5a5a5;
+}
+
+.selected {
+    background-color: #aff1a4;
+    border: 1px solid #35cd1c;
+}
