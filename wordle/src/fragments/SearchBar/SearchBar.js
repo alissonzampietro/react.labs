@@ -19,5 +19,5 @@ export function SearchBar({maxAccepted, submit}) {
             setWord(e.target.value)
         }
     }
-    return <input name="search-bar" className="input-search" type="text" value={word} onChange={typing} onKeyDown={submitValidate}/>
+    return <input name="search-bar" autoComplete="off" className="input-search" type="text" value={word} onChange={typing} onKeyDown={submitValidate}/>
 }
