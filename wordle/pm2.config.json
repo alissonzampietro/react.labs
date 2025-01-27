@@ -1,0 +1,10 @@
+{
+  "apps" : [
+    {
+      "name": "wordle",
+      "script": "npx",
+      "interpreter": "none",
+      "args": "pm2 serve build/ 3000 --spa"
+    }
+  ]
+}
