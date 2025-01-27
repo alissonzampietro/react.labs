@@ -1,7 +1,7 @@
-import './WordBox.css'
+import './Tile.css'
 
-export function WordBox({word, isSelected, exists}) {
+export function Tile({letter, isSelected, exists}) {
     return <div className={`word ${exists ? 'exists' : ''} ${isSelected ? 'selected' : 'normal'}`}>
-        {word}
+        {letter.toUpperCase()}
     </div>
 }

@@ -8,4 +8,3 @@ export const words = ['certo', 'antes', 'prato', 'idoso', 'votos', 'lugar', 'mar
     'perto', 'caixa', 'ricos', 'fardo', 'idoso', 'folha', 'idoso', 'brisa', 'baixa', 'prazo', 
     'dente', 'carro', 'campo', 'fosso', 'jovem', 'prazo', 'pedra', 'fardo', 'viver', 'sonho', 
     'vento', 'copos', 'carta', 'feira', 'sexto', 'bolsa', 'ponto', 'setor', 'sinal', 'falso'];
-  
