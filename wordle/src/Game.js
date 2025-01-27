@@ -37,7 +37,6 @@ function Game() {
         <img src={Logo} alt="" width={300} />
       </header>
       <main>
-        {targetWord}
         {end && <p>Parabéns! <FortuneCookie /> <button onClick={() => reset()}>De novo</button></p>}
         {!end && <div>
           {historyList.length < 5 && <div>
