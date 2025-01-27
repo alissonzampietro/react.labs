@@ -5,7 +5,8 @@ export function ShowWord({word, rightWords = []}) {
     return <div className="list-words">
         {word.split('').map((item, pos) => {
             let isSelected = item.toLowerCase() == rightWords[pos].toLowerCase();
-            return <WordBox word={item.toUpperCase()} isSelected={isSelected}/>
+            let exists = rightWords.includes(item);
+            return <WordBox word={item.toUpperCase()} isSelected={isSelected} exists={exists}/>
         })}
     </div>
 }
