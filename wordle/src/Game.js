@@ -6,11 +6,16 @@ import { words } from './constants/words';
 import Logo from './logo.svg'
 import { FortuneCookie } from './fragments/FortuneCookie/FortuneCookie';
 
+export const CHANCES = 5;
+export const CHANCES_SYSTEM = CHANCES - 1;
+export const LETTER_SLOTS = 5;
+
 function Game() {
 
   const [historyList, setHistorylist] = useState([]);
   const [targetWord, setTargetWord] = useState("");
   const [targetWordSplitted, setTargetWordSplitted] = useState([]);
+  const [isVictory, setIsVictory] = useState(false);
   const [end, setEnd] = useState(false);
 
   useEffect(() => {
@@ -26,7 +31,10 @@ function Game() {
   }
 
   const submitWord = (guess) => {
-    setEnd(targetWord === guess);
+    const isWordRight = targetWord === guess;
+    const isEnd = isWordRight || historyList.length === CHANCES_SYSTEM;
+    setEnd(isEnd);
+    setIsVictory(isWordRight);
     guess = guess.toLowerCase()
     setHistorylist(l => [...l, guess])
   }
@@ -37,20 +45,20 @@ function Game() {
         <img src={Logo} alt="" width={300} />
       </header>
       <main>
-        {end && <p>Parabéns! <FortuneCookie /> <button onClick={() => reset()}>De novo</button></p>}
+        {(end && isVictory) && <FortuneCookie message="Parabéns!"><button onClick={() => reset()}>De novo</button></FortuneCookie>}
         {!end && <div>
-          {historyList.length < 5 && <div>
-            <p>{5 - historyList.length} tentativas: {targetWordSplitted.map(i => '____   ')}</p>
+          {historyList.length < CHANCES && <div>
+            <p>{CHANCES - historyList.length} tentativas: {targetWordSplitted.map(i => '____   ')}</p>
               <SearchBar maxAccepted={targetWordSplitted.length} submit={submitWord}/>
               <div className="word-list">
                 {historyList.map(guess => <Word word={guess} targetWordSplitted={targetWordSplitted}/>)}
               </div>
           </div>}
-          {historyList.length >= 5 && <div>
-            <h1>VOCÊ PERDEU: {targetWord}</h1>
-              <button onClick={() => reset()}>De novo</button>
-            </div>}
         </div>}
+        {(end && !isVictory) && <div>
+          <h2>VOCÊ PERDEU! A palavra é {targetWord}</h2>
+            <button onClick={() => reset()}>De novo</button>
+          </div>}
       </main>
     </div>
   );
