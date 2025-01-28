@@ -46,19 +46,19 @@ function Game() {
       </header>
       <main>
         {(end && isVictory) && <FortuneCookie message="Parabéns!"><button onClick={() => reset()}>De novo</button></FortuneCookie>}
-        {!end && <div>
-          {historyList.length < CHANCES && <div>
-            <p>{CHANCES - historyList.length} tentativas: {targetWordSplitted.map(i => '____   ')}</p>
-              <SearchBar maxAccepted={targetWordSplitted.length} submit={submitWord}/>
-              <div className="word-list">
-                {historyList.map(guess => <Word word={guess} targetWordSplitted={targetWordSplitted}/>)}
-              </div>
-          </div>}
-        </div>}
         {(end && !isVictory) && <div>
           <h2>VOCÊ PERDEU! A palavra é {targetWord}</h2>
             <button onClick={() => reset()}>De novo</button>
           </div>}
+        <div>
+          <div>
+              {!end && <div><p>{CHANCES - historyList.length} tentativas: {targetWordSplitted.map(i => '____   ')}</p>
+              <SearchBar maxAccepted={targetWordSplitted.length} submit={submitWord}/></div>}
+              <div className="word-list">
+                {historyList.map(guess => <Word word={guess} targetWordSplitted={targetWordSplitted}/>)}
+              </div>
+          </div>
+        </div>
       </main>
     </div>
   );
